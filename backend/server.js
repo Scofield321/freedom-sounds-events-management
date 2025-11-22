@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   "http://127.0.0.1:5500",
   "http://localhost:5000",
-  process.env.FRONTEND_URL,
+  "https://freedom-sounds-events-management.vercel.app/",
 ];
 app.use(
   cors({
