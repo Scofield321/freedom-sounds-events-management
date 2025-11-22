@@ -24,15 +24,18 @@ const allowedOrigins = [
   "http://127.0.0.1:5500",
   "http://localhost:5000",
 ];
+
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) callback(null, true);
-      else callback(new Error("CORS not allowed"));
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow server-to-server / tools
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error("CORS not allowed"));
     },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
+    preflightContinue: false,
   })
 );
 
