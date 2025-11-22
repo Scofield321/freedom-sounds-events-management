@@ -1,0 +1,21 @@
+<section class="manage-products">
+  <div class="content"></div>
+</section>
+
+<script>
+  productImage.addEventListener("change", () => {
+    const file = productImage.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imagePreview.innerHTML = `<img src="${reader.result}" alt="Product Image"/>`;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.textContent = "No image selected";
+    }
+  });
+</script>
+
+<script type="module" src="manage-products.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

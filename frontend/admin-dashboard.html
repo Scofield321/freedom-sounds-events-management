@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freedom Sounds & Events Management | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="brand">Freedom Sounds & Events Management</div>
+      <div class="top-actions">
+        <div class="profile" id="admin-name">Admin</div>
+        <!-- <button class="btn-logout" id="logout-btn">Logout</button> -->
+      </div>
+    </header>
+
+    <!-- Layout -->
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <ul>
+          <li><a href="#dashboard" class="nav-link active">📊 Dashboard</a></li>
+          <li><a href="#banners" class="nav-link">🖼️ Manage Banners</a></li>
+          <li><a href="#products" class="nav-link">🎸 Manage Products</a></li>
+          <!-- <li><a href="#orders" class="nav-link">🛒 Orders</a></li> -->
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content" id="main-content">
+        <!-- Dashboard Page -->
+        <section class="page" id="dashboardPage">
+          <div class="welcome-card">
+            <h1>Welcome, Admin</h1>
+            <p>Use the menu to manage content and track performance.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Products</h3>
+              <p id="statProducts">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Banners</h3>
+              <p id="statBanners">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Visits (This Month)</h3>
+              <p id="statVisits">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Most Searched Product</h3>
+              <p id="statMostSearched">-</p>
+              <small id="statMostSearchedCount"></small>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Product Searches Over Last 6 Months</h3>
+            <canvas id="searchChart" width="400" height="200"></canvas>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Bottom navigation for mobile -->
+    <nav class="bottom-nav">
+      <a href="#dashboard" class="nav-link active">Dashboard</a>
+      <a href="#banners" class="nav-link">Banners</a>
+      <a href="#products" class="nav-link">Products</a>
+      <!-- <a href="#orders" class="nav-link">Orders</a> -->
+    </nav>
+
+    <script type="module" src="dashboard-router.js"></script>
+
+    <script type="module">
+      import { initAdminRouter } from "./dashboard-router.js";
+      initAdminRouter();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
