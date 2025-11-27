@@ -184,7 +184,7 @@ body {
 
   display: flex;
   align-items: center;
-  justify-content: center; /* center title */
+  justify-content: center;
 }
 
 img {
