@@ -11,7 +11,11 @@ body {
   display: flex;
   align-items: center;
   padding: 14px 20px;
-  background: #1a1a1a;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.95),
+    rgba(50, 50, 50, 0.95)
+  );
 }
 
 .site-title {
@@ -161,7 +165,11 @@ body {
 /* ================= NAVBAR — PROFESSIONAL LEVEL ================= */
 .navbar {
   width: 100%;
-  background: #0e0e0e;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.95),
+    rgba(50, 50, 50, 0.95)
+  );
   padding: 14px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: sticky;
@@ -202,13 +210,51 @@ img {
 }
 
 .search-bar-wrapper {
-  width: 95%;
+  width: 90%;
   margin: 20px auto;
 }
 
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb; /* light gray */
+  border-radius: 35px;
+  padding: 8px 14px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.search-bar:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-bar i {
+  font-size: 18px;
+  color: #9ca3af; /* soft gray */
+  margin-right: 8px;
+}
+
 #searchInput {
-  padding: 8px 12px;
-  border-radius: 6px;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  padding: 8px 0;
+  outline: none;
+  color: #374151; /* dark gray */
+  background: transparent;
+}
+
+#searchInput::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus effect */
+.search-bar:focus-within {
+  border-color: #6366f1; /* indigo tone */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 /* FIXED HEIGHT CAROUSEL */
@@ -329,13 +375,99 @@ img {
   text-overflow: ellipsis;
 }
 
+/* ================= ADVERTISING SECTION ================= */
+.advertising-section {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.advertising-section h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+#advertising-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+/* ----- AD CAMPAIGN CARD ----- */
+.ad-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.ad-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ad-card-body h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+
+.ad-card-body p {
+  font-size: 14px;
+  margin: 2px 0;
+  color: #555;
+}
+
+.ad-card-body p strong {
+  color: #222;
+}
+
+/* ----- MEDIA GRID ----- */
+.ad-media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.ad-media img,
+.ad-media video {
+  flex: 1 1 calc(50% - 8px);
+  max-width: calc(50% - 8px);
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.ad-media video {
+  height: auto;
+}
+
+/* ----- DATES & INFO ----- */
+.ad-dates {
+  font-size: 13px;
+  color: #777;
+}
+
 /* ================= DESKTOP LAYOUT ================= */
 @media (min-width: 576px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .search-bar-wrapper {
-    width: 50%;
+    width: 95%;
+  }
+  #advertising-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -343,10 +475,16 @@ img {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  #advertising-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 992px) {
   .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #advertising-list {
     grid-template-columns: repeat(4, 1fr);
   }
 }

@@ -716,6 +716,138 @@ img {
   background: #ff3d3d;
 }
 
+/* =======================================================
+   SOUND ENGINEERING + TRAINING MODULES
+   ======================================================= */
+
+/* ---------- Shared Page Wrapper ---------- */
+.module-page {
+  background: var(--secondary);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.module-page h2 {
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+}
+
+/* ---------- Module Description Box ---------- */
+.module-description {
+  background: var(--bg-dark);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  color: var(--text-light);
+  line-height: 1.5;
+  border: 1px solid var(--border);
+}
+
+/* ---------- Upload Box ---------- */
+.module-upload-box {
+  border: 2px dashed var(--border);
+  padding: 25px;
+  border-radius: var(--radius);
+  text-align: center;
+  cursor: pointer;
+  background: var(--tertiary);
+  color: var(--text-light);
+  transition: 0.25s ease;
+}
+
+.module-upload-box:hover {
+  border-color: var(--primary);
+  background: #112233;
+}
+
+/* ---------- Gallery Grid (Images + Videos) ---------- */
+.module-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.module-gallery-item {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.module-gallery-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Images */
+.module-gallery-item img,
+.module-gallery-item video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ---------- Item Info Overlay ---------- */
+.module-item-info {
+  padding: 14px;
+}
+
+.module-item-info h4 {
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.module-item-info p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* ---------- Gallery Action Buttons ---------- */
+.module-item-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+}
+
+.module-item-actions button {
+  flex: 1;
+  background: var(--primary);
+  padding: 8px 0;
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.25s;
+}
+
+.module-item-actions button:hover {
+  background: var(--primary-dark);
+}
+
+/* Edit & Delete Styles */
+.module-edit-btn {
+  background: #2b7cff;
+}
+.module-edit-btn:hover {
+  background: #1e63cc;
+}
+
+.module-delete-btn {
+  background: #ff3d3d;
+}
+.module-delete-btn:hover {
+  background: #d32f2f;
+}
+
 /* ================= MOBILE FIRST ================= */
 @media (min-width: 768px) {
   .sidebar {
@@ -744,13 +876,20 @@ img {
   .welcome-card {
     padding: 30px;
   }
-  /* .banner-card {
-    flex-direction: row;
-  } */
+  .module-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .module-page {
+    padding: 30px;
+  }
 }
 
 @media (min-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .module-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 }

@@ -12,18 +12,38 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <nav class="navbar bg-dark px-3 py-2">
-      <h2 class="site-title text-white m-0">
-        Freedom Sounds & Events Management
-      </h2>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-2">
+      <a class="navbar-brand" href="index.html">
+        Freedom Sounds & Events Mgt
+      </a>
 
-      <div class="search-bar-wrapper">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search instruments..."
-          class="form-control"
-        />
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Instruments Shop</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="sound-services.html">Sound Engineering</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="advertising.html">Advertising / Drive</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="training.html">Training</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -53,6 +73,18 @@
     <!-- PRODUCT LIST -->
     <section class="products-section">
       <h2 class="section-title" id="productsTitle">Featured Instruments</h2>
+      <!-- Search bar -->
+      <div class="search-bar-wrapper d-lg-block">
+        <div class="search-bar">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search instruments..."
+          />
+        </div>
+      </div>
+
       <div id="loader" class="loader"></div>
       <div class="products-grid" id="productsContainer">
         <!-- Dynamic products will be loaded here -->

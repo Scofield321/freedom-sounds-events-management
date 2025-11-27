@@ -1,5 +1,8 @@
 import { loadProducts } from "./manage-products.js";
 import { loadBanners } from "./manage-banners.js";
+import { loadServices } from "./manage-services.js";
+import { loadAdvertising } from "./manage-advertising.js";
+import { loadTraining } from "./manage-training.js";
 import { BASE_URL } from "./config.js";
 import { Session } from "./session.js";
 
@@ -8,6 +11,9 @@ export function initAdminRouter() {
     "#dashboard": loadDashboard,
     "#products": loadProducts,
     "#banners": loadBanners,
+    "#services": loadServices,
+    "#advertising": loadAdvertising,
+    "#training": loadTraining,
     "#logout": handleLogout,
   };
 
