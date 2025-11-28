@@ -848,6 +848,253 @@ img {
   background: #d32f2f;
 }
 
+/* =======================================================
+   ADVERTISING CARDS FIX (override styles)
+   ======================================================= */
+
+#advertising-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+#advertising-gallery .gallery-item {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0;
+  overflow: hidden;
+}
+
+#advertising-gallery .banner-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#advertising-gallery .banner-card img,
+#advertising-gallery .banner-card video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+#advertising-gallery .banner-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 6px;
+  height: auto;
+}
+
+#advertising-gallery .banner-card-content h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+#advertising-gallery .banner-card-content p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+#advertising-gallery .banner-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#advertising-gallery .banner-card-actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+#advertising-gallery .banner-card-actions .edit-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+#advertising-gallery .banner-card-actions .delete-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* =======================================================
+   TRAINING CARDS FIX (override styles)
+   ======================================================= */
+
+#training-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+#training-gallery .gallery-item {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0;
+  overflow: hidden;
+}
+
+#training-gallery .banner-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#training-gallery .banner-card img,
+#training-gallery .banner-card video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+#training-gallery .banner-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 6px;
+  height: auto;
+}
+
+#training-gallery .banner-card-content h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+#training-gallery .banner-card-content p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+#training-gallery .banner-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#training-gallery .banner-card-actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+#training-gallery .banner-card-actions .edit-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+#training-gallery .banner-card-actions .delete-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* =======================================================
+   SERVICES CARDS FIX (override styles)
+   ======================================================= */
+
+#services-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+#services-gallery .gallery-item {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0;
+  overflow: hidden;
+}
+
+#services-gallery .banner-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#services-gallery .banner-card img,
+#services-gallery .banner-card video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+#services-gallery .banner-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 6px;
+  height: auto;
+}
+
+#services-gallery .banner-card-content h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+#services-gallery .banner-card-content p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+#services-gallery .banner-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#services-gallery .banner-card-actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+#services-gallery .banner-card-actions .edit-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+#services-gallery .banner-card-actions .delete-btn {
+  background: #e74c3c;
+  color: #fff;
+}
+
 /* ================= MOBILE FIRST ================= */
 @media (min-width: 768px) {
   .sidebar {

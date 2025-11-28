@@ -240,10 +240,13 @@ async function editAdvertising(id) {
     document.getElementById("advertising-description").value =
       advertising.description;
     document.getElementById("advertising-type").value = advertising.type || "";
-    document.getElementById("advertising-start").value =
-      advertising.start_date || "";
-    document.getElementById("advertising-end").value =
-      advertising.end_date || "";
+    document.getElementById("advertising-start").value = advertising.start_date
+      ? advertising.start_date.split("T")[0]
+      : "";
+
+    document.getElementById("advertising-end").value = advertising.end_date
+      ? advertising.end_date.split("T")[0]
+      : "";
 
     // Preview existing media
     previewGrid.innerHTML = "";

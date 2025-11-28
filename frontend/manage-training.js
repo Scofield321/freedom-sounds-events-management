@@ -117,7 +117,14 @@ async function fetchTraining() {
           <div class="banner-card-content">
             <h4>${item.title}</h4>
             <p>${item.description}</p>
-            <p>UGX ${item.price ? item.price.toLocaleString() : "-"}</p>
+            <p>
+              UGX ${
+                item.price
+                  ? Number(parseFloat(item.price)).toLocaleString("en-UG")
+                  : "-"
+              }
+            </p>
+
             ${
               item.video
                 ? `<video src="${item.video}" controls style="max-width:100%;margin-top:5px;"></video>`

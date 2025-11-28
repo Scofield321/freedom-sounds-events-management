@@ -19,50 +19,52 @@ async function loadAdvertising() {
           ? ad.images
               .map(
                 (img) =>
-                  `<img src="${img}" alt="${ad.title}" class="img-fluid mb-2" />`
+                  `<img src="${img}" alt="${ad.title}" class="ad-img mb-2 rounded" />`
               )
               .join("")
-          : "";
+          : `<div class="ad-img-placeholder mb-2">No Image</div>`;
 
         return `
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body">
-            <h4 class="card-title">${ad.title}</h4>
-            <p class="card-text">${ad.description || ""}</p>
-            <p class="mb-1"><strong></strong> ${
-              ad.type || " Not specified "
-            } Advertising</p>
-            <p class="mb-1">
-              <strong>Between</strong> ${
-                ad.start_date
-                  ? new Date(ad.start_date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })
-                  : "-"
-              }, 
-              <strong> - </strong> ${
-                ad.end_date
-                  ? new Date(ad.end_date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })
-                  : "-"
-              }
-            </p>
-            <div class="mb-2">${imagesHtml}</div>
-            <p class="text-muted small">Posted on: ${new Date(
-              ad.created_at
-            ).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            })}</p>
-          </div>
+      <div class="ad-card mb-4">
+        <div class="ad-card-header">
+          <h4 class="ad-title">${ad.title}</h4>
+          <span class="ad-type badge">${ad.type || "General"}</span>
         </div>
-        `;
+        <div class="ad-card-body">
+          <p class="ad-description">${ad.description || ""}</p>
+          <p class="ad-dates">
+            <strong>From:</strong> ${
+              ad.start_date
+                ? new Date(ad.start_date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })
+                : "-"
+            }
+            <strong>To:</strong> ${
+              ad.end_date
+                ? new Date(ad.end_date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  })
+                : "-"
+            }
+          </p>
+          <div class="ad-images">${imagesHtml}</div>
+        </div>
+        <div class="ad-card-footer">
+          <p class="ad-posted text-muted small">Posted: ${new Date(
+            ad.created_at
+          ).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })}</p>
+        </div>
+      </div>
+    `;
       })
       .join("");
 

@@ -171,18 +171,42 @@ async function handleProductFormSubmit(e) {
   e.preventDefault();
 
   const id = document.getElementById("product-id").value;
+
+  // Collect ALL fields
   const name = document.getElementById("product-name").value;
   const description = document.getElementById("product-description").value;
   const price = document.getElementById("product-price").value;
+  const discountPrice = document.getElementById("product-discount-price").value;
+  const category = document.getElementById("product-category").value;
+  const subcategory = document.getElementById("product-subcategory").value;
+  const stock = document.getElementById("product-stock").value;
+  const brand = document.getElementById("product-brand").value;
+  const status = document.getElementById("product-status").value;
+
   const imageInput = document.getElementById("product-images");
 
   const formData = new FormData();
+
+  // Append all fields to FormData
   formData.append("name", name);
   formData.append("description", description);
   formData.append("price", price);
-  if (imageInput.files[0]) formData.append("images", imageInput.files[0]);
+  formData.append("discountPrice", discountPrice);
+  formData.append("category", category);
+  formData.append("subcategory", subcategory);
+  formData.append("stock", stock); // ✅ FIXED — now sent to backend
+  formData.append("brand", brand);
+  formData.append("status", status);
+
+  // Images (support multiple)
+  if (imageInput.files.length > 0) {
+    [...imageInput.files].forEach((file) => {
+      formData.append("images", file);
+    });
+  }
 
   showLoader();
+
   try {
     const url = id ? `${BASE_URL}/products/${id}` : `${BASE_URL}/products`;
     const method = id ? "PUT" : "POST";
@@ -195,7 +219,7 @@ async function handleProductFormSubmit(e) {
 
     const result = await res.json();
 
-    hideLoader(); // hide spinner before SweetAlert
+    hideLoader();
 
     await Swal.fire({
       icon: "success",
@@ -220,15 +244,23 @@ async function editProduct(id) {
       headers: { Authorization: `Bearer ${Session.token()}` },
     });
     const { product } = await res.json();
+
     document.getElementById("product-id").value = product.id;
     document.getElementById("product-name").value = product.name;
     document.getElementById("product-description").value = product.description;
     document.getElementById("product-category").value = product.category || "";
     document.getElementById("product-subcategory").value =
       product.subcategory || "";
-    document.getElementById("product-price").value = product.price;
+
+    // 🔹 Format as whole UGX amount (no .00)
+    document.getElementById("product-price").value =
+      product.price != null ? Number(product.price).toFixed(0) : "";
+
     document.getElementById("product-discount-price").value =
-      product.discountPrice || "";
+      product.discountPrice != null
+        ? Number(product.discountPrice).toFixed(0)
+        : "";
+
     document.getElementById("product-stock").value = product.stock;
     document.getElementById("product-brand").value = product.brand || "";
     document.getElementById("product-status").value =

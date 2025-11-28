@@ -173,11 +173,13 @@ const updateProduct = async (req, res, next) => {
        WHERE id=$7
        RETURNING *`,
       [
-        name || productRes.rows[0].name,
-        description || productRes.rows[0].description,
-        price || productRes.rows[0].price,
-        category || productRes.rows[0].category,
-        stock || productRes.rows[0].stock,
+        name !== undefined ? name : productRes.rows[0].name,
+        description !== undefined
+          ? description
+          : productRes.rows[0].description,
+        price !== undefined ? price : productRes.rows[0].price,
+        category !== undefined ? category : productRes.rows[0].category,
+        stock !== undefined ? stock : productRes.rows[0].stock,
         cleanUrls,
         id,
       ]

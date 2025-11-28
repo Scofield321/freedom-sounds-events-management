@@ -3,8 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Freedom Sounds & Events Management</title>
+
+    <!-- SEO Meta Tags -->
+    <title>
+      Freedom Sounds & Events Management | Instruments, Training & Services
+    </title>
+    <meta
+      name="description"
+      content="Shop musical instruments, explore sound engineering services, join advertising campaigns and training programs in Uganda. Quality instruments and professional services for musicians."
+    />
+    <meta
+      name="keywords"
+      content="musical instruments Uganda, sound engineering services, training programs, advertising campaigns, guitars, drums, keyboards, DJ equipment"
+    />
+    <meta name="author" content="Freedom Sounds & Events Management" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Freedom Sounds & Events Management" />
+    <meta
+      property="og:description"
+      content="Shop instruments, book sound services, and join music training programs in Uganda."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.freedomsounds.ug/" />
+    <meta
+      property="og:image"
+      content="https://www.freedomsounds.ug/images/og-image.jpg"
+    />
+
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -91,7 +119,35 @@
       </div>
     </section>
 
+    <!-- Footer Placeholder -->
+    <div id="footer-container"></div>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Freedom Sounds & Events Management",
+        "url": "https://www.freedomsounds.ug/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.freedomsounds.ug/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="index.js"></script>
+
+    <script>
+      // Fetch and inject the footer
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("footer-container").innerHTML = html;
+        })
+        .catch((err) => console.error("Failed to load footer:", err));
+    </script>
   </body>
 </html>
