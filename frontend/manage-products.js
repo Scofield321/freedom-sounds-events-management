@@ -2,6 +2,17 @@ import { BASE_URL } from "./config.js";
 import { Session } from "./session.js";
 import { showLoader, hideLoader } from "./loader.js";
 
+// -----------------------------
+// 🔹 SOCKET.IO SETUP
+// -----------------------------
+import { io } from "https://cdn.socket.io/4.6.1/socket.io.esm.min.js";
+const socket = io(BASE_URL);
+
+let allProducts = [];
+
+// -----------------------------
+// Main function
+// -----------------------------
 export function loadProducts() {
   const content = document.querySelector(".content");
 
@@ -117,10 +128,69 @@ export function loadProducts() {
     });
   }
 
+  // -----------------------------
+  // 🔹 SOCKET.IO LISTENER FOR REAL-TIME UPDATES
+  // -----------------------------
+  socket.on("products:changed", (data) => {
+    const { type, product, productId } = data;
+    const gallery = document.getElementById("products-gallery");
+
+    if (!gallery) return;
+
+    if (type === "create") {
+      const item = createProductCard(product);
+      gallery.prepend(item); // add new product at the top
+    } else if (type === "update") {
+      const existing = gallery
+        .querySelector(`.edit-btn[data-id="${product.id}"]`)
+        ?.closest(".gallery-item");
+      if (existing) {
+        const updatedItem = createProductCard(product);
+        existing.replaceWith(updatedItem);
+      }
+    } else if (type === "delete") {
+      const existing = gallery
+        .querySelector(`.edit-btn[data-id="${productId}"]`)
+        ?.closest(".gallery-item");
+      if (existing) existing.remove();
+    }
+  });
+
   fetchProducts();
 }
 
-// ---------- Fetch products ----------
+// -----------------------------
+// Helper to create a product card
+// -----------------------------
+function createProductCard(product) {
+  const item = document.createElement("div");
+  item.className = "gallery-item";
+
+  const imgSrc = product.images?.[0] || "https://placehold.co/150";
+  item.innerHTML = `
+    <div class="banner-card">
+      <img src="${imgSrc}" alt="${product.name}" />
+      <div class="banner-card-content">
+        <h4>${product.name}</h4>
+        <p>UGX ${Number(product.price).toLocaleString()}</p>
+        <p>${product.description}</p>
+        <div class="banner-card-actions">
+          <button class="edit-btn" data-id="${product.id}">Edit</button>
+          <button class="delete-btn" data-id="${product.id}">Delete</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  item.querySelector(".edit-btn").onclick = () => editProduct(product.id);
+  item.querySelector(".delete-btn").onclick = () => deleteProduct(product.id);
+
+  return item;
+}
+
+// -----------------------------
+// Fetch products from backend
+// -----------------------------
 async function fetchProducts() {
   const gallery = document.getElementById("products-gallery");
   gallery.innerHTML = "";
@@ -133,33 +203,11 @@ async function fetchProducts() {
     const data = await res.json();
 
     data.products.forEach((product) => {
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-
-      const imgSrc = product.images?.[0] || "https://placehold.co/150";
-      item.innerHTML = `
-        <div class="banner-card">
-          <img src="${imgSrc}" alt="${product.name}" />
-          <div class="banner-card-content">
-            <h4>${product.name}</h4>
-            <p>UGX ${Number(product.price).toLocaleString()}</p>
-            <p>${product.description}</p>
-            <div class="banner-card-actions">
-              <button class="edit-btn" data-id="${product.id}">Edit</button>
-              <button class="delete-btn" data-id="${product.id}">Delete</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      item.querySelector(".edit-btn").onclick = () => editProduct(product.id);
-      item.querySelector(".delete-btn").onclick = () =>
-        deleteProduct(product.id);
-
+      const item = createProductCard(product);
       gallery.appendChild(item);
     });
   } catch (err) {
-    hideLoader(); // hide spinner before showing Swal
+    hideLoader();
     await Swal.fire("Error", err.message, "error");
   } finally {
     hideLoader();

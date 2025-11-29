@@ -1,6 +1,8 @@
 import { BASE_URL } from "./config.js";
+import { showLoader, hideLoader } from "./loader.js";
 
 async function fetchTraining() {
+  showLoader();
   try {
     const res = await fetch(`${BASE_URL}/training`);
     const data = await res.json();
@@ -53,6 +55,8 @@ async function fetchTraining() {
     });
   } catch (err) {
     console.error("Failed to fetch training:", err);
+  } finally {
+    hideLoader();
   }
 }
 

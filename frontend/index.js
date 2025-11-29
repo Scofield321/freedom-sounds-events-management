@@ -1,4 +1,7 @@
 import { BASE_URL } from "./config.js";
+import { io } from "https://cdn.socket.io/4.6.1/socket.io.esm.min.js";
+
+const socket = io(BASE_URL);
 
 const productsContainer = document.getElementById("productsContainer");
 const searchInput = document.getElementById("searchInput");
@@ -46,7 +49,7 @@ function renderProducts(list) {
     productItem.innerHTML = `
         <a href="product.html?id=${product.id}" class="product-link">
           <div class="product-img-wrapper">
-            <img src="${product.images[0]}" alt="${product.name}" />
+            <img src="${product.images?.[0]}" alt="${product.name}" />
           </div>
 
           <div class="product-info">
@@ -176,4 +179,19 @@ async function loadBanners() {
 window.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   loadBanners();
+});
+
+socket.on("products:changed", (data) => {
+  const { type, product, productId } = data;
+
+  if (type === "create") {
+    allProducts.unshift(product); // add new product at the top
+  } else if (type === "update") {
+    const index = allProducts.findIndex((p) => p.id === product.id);
+    if (index > -1) allProducts[index] = product; // update existing
+  } else if (type === "delete") {
+    allProducts = allProducts.filter((p) => p.id !== productId); // remove deleted
+  }
+
+  renderProducts(allProducts); // re-render the updated array
 });

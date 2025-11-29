@@ -47,6 +47,13 @@ const createProduct = async (req, res, next) => {
     );
 
     res.status(201).json({ success: true, product: result.rows[0] });
+
+    // Emit a real-time update
+    const io = req.app.get("io");
+    io.emit("products:changed", {
+      type: "create",
+      product: result.rows[0],
+    });
   } catch (err) {
     console.error("Create product error:", err);
     next(err);
@@ -186,6 +193,12 @@ const updateProduct = async (req, res, next) => {
     );
 
     res.json({ success: true, product: result.rows[0] });
+
+    const io = req.app.get("io");
+    io.emit("products:changed", {
+      type: "update",
+      product: result.rows[0],
+    });
   } catch (err) {
     console.error("Update product error:", err);
     next(err);
@@ -206,6 +219,12 @@ const deleteProduct = async (req, res, next) => {
 
     await pool.query(`DELETE FROM products WHERE id=$1`, [id]);
     res.json({ success: true, msg: "Product deleted successfully" });
+
+    const io = req.app.get("io");
+    io.emit("products:changed", {
+      type: "delete",
+      productId: id,
+    });
   } catch (err) {
     next(err);
   }

@@ -1,6 +1,8 @@
 import { BASE_URL } from "./config.js";
+import { showLoader, hideLoader } from "./loader.js";
 
 async function fetchServices() {
+  showLoader();
   try {
     const res = await fetch(`${BASE_URL}/services`);
     const data = await res.json();
@@ -42,6 +44,8 @@ async function fetchServices() {
     });
   } catch (err) {
     console.error("Failed to fetch services:", err);
+  } finally {
+    hideLoader();
   }
 }
 

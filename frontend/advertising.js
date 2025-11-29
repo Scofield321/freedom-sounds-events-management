@@ -1,7 +1,9 @@
 import { BASE_URL } from "./config.js";
+import { showLoader, hideLoader } from "./loader.js";
 
 // Fetch and render advertising campaigns
 async function loadAdvertising() {
+  showLoader();
   const container = document.querySelector(".container");
 
   try {
@@ -72,6 +74,8 @@ async function loadAdvertising() {
   } catch (err) {
     console.error("Failed to fetch advertising campaigns:", err);
     container.innerHTML += `<p class="text-center text-danger mt-3">Failed to load campaigns. Please try again later.</p>`;
+  } finally {
+    hideLoader();
   }
 }
 
