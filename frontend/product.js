@@ -1,4 +1,5 @@
 import { BASE_URL } from "./config.js";
+import { showLoader, hideLoader } from "./loader.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
@@ -9,6 +10,7 @@ const relatedContainer = document.getElementById("relatedProducts");
 const SHOP_PHONE = "+256756485168";
 
 async function loadProductDetails() {
+  showLoader();
   try {
     const res = await fetch(`${BASE_URL}/products/${productId}`);
     const data = await res.json();
@@ -90,10 +92,13 @@ async function loadProductDetails() {
   } catch (err) {
     console.error(err);
     productContainer.innerHTML = "<p>Error loading product.</p>";
+  } finally {
+    hideLoader();
   }
 }
 
 async function loadRelatedProducts(category) {
+  showLoader();
   try {
     const res = await fetch(`${BASE_URL}/products/category/${category}`);
     const data = await res.json();
@@ -119,6 +124,8 @@ async function loadRelatedProducts(category) {
     `;
   } catch (e) {
     console.error("Related error:", e);
+  } finally {
+    hideLoader();
   }
 }
 
