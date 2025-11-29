@@ -24,7 +24,7 @@ async function loadProductDetails() {
     const mainImg = product.images?.[0] || "placeholder.jpg";
 
     // Construct WhatsApp message including product name & image
-    const waMessage = `Hi, I'm interested in ${product.name} - check this product: ${window.location.href}`;
+    const waMessage = `Hi Freedom Sounds & Events Mgt, I'm interested in ${product.name}`;
     const waLink = `https://wa.me/${SHOP_PHONE.replace(
       /\+/g,
       ""
