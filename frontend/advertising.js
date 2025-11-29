@@ -17,14 +17,21 @@ async function loadAdvertising() {
 
     const campaignsHtml = data.advertising
       .map((ad) => {
+        // ⭐ NEW: wrap images using training-media-wrapper style
         const imagesHtml = ad.images?.length
           ? ad.images
               .map(
-                (img) =>
-                  `<img src="${img}" alt="${ad.title}" class="ad-img mb-2 rounded" />`
+                (img) => `
+                <div class="training-media-wrapper">
+                    <img src="${img}" alt="${ad.title}" />
+                </div>`
               )
               .join("")
-          : `<div class="ad-img-placeholder mb-2">No Image</div>`;
+          : `
+            <div class="training-media-wrapper">
+              <div class="ad-img-placeholder">No Image</div>
+            </div>
+          `;
 
         return `
       <div class="ad-card mb-4">
@@ -32,6 +39,7 @@ async function loadAdvertising() {
           <h4 class="ad-title">${ad.title}</h4>
           <span class="ad-type badge">${ad.type || "General"}</span>
         </div>
+
         <div class="ad-card-body">
           <p class="ad-description">${ad.description || ""}</p>
           <p class="ad-dates">
@@ -54,8 +62,14 @@ async function loadAdvertising() {
                 : "-"
             }
           </p>
-          <div class="ad-images">${imagesHtml}</div>
+
+          <!-- ⭐ NEW: Insert wrapped images -->
+          <div class="ad-images">
+              ${imagesHtml}
+          </div>
+
         </div>
+
         <div class="ad-card-footer">
           <p class="ad-posted text-muted small">Posted: ${new Date(
             ad.created_at

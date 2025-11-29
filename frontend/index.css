@@ -67,14 +67,6 @@ body {
 }
 
 /* ----- PRODUCT CARD ----- */
-.product-card {
-  position: relative;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
 
 .product-card:hover {
   transform: translateY(-4px);
@@ -88,52 +80,7 @@ body {
   flex-direction: column;
 }
 
-/* ----- PRODUCT IMAGE ----- */
-/* .product-card img {
-  width: 100%;
-
-  object-fit: cover !important;
-  transition: transform 0.3s ease;
-}
-
-.product-card img:hover {
-  transform: scale(1.05);
-} */
-
 /* ----- PRODUCT INFO OVERLAY ----- */
-.product-info {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.product-info h4 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-  color: #111;
-}
-
-.product-info p {
-  font-size: 14px;
-  margin: 2px 0;
-  color: #555;
-}
-
-.product-info p.price {
-  font-weight: 700;
-  font-size: 16px;
-  color: #e00000;
-}
-
-.product-info p.description {
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* truncate to 2 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 /* ----- WHATSAPP BUTTON ----- */
 .btn-whatsapp {
@@ -285,12 +232,6 @@ img {
   object-position: center;
 }
 
-/* #heroCarousel .carousel-inner {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-} */
-
 .price {
   color: red;
 }
@@ -328,13 +269,6 @@ img {
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-}
-
-.product-link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
 }
 
 /* ========== IMAGE SECTION WITH PROPER CROPPING ========== */
@@ -619,6 +553,28 @@ img {
 .ad-images::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
+}
+
+.training-media-wrapper,
+.service-media-wrapper,
+.training-media-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: #f2f2f2;
+}
+
+.training-media-wrapper img,
+.training-media-wrapper video,
+.service-media-wrapper img,
+.service-media-wrapper video,
+.training-media-wrapper img,
+.training-media-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ================= DESKTOP LAYOUT ================= */
