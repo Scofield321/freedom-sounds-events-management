@@ -246,11 +246,20 @@ tbody td {
   left: 0;
   width: 100%;
   background: var(--bg-light);
+
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 8px 0;
+  gap: 20px; /* spacing between items */
+
+  overflow-x: auto; /* enable horizontal scrolling */
+  white-space: nowrap; /* prevent wrapping */
+  padding: 10px 12px; /* better spacing top/bottom */
   z-index: 1000;
+
+  scrollbar-width: none; /* hide scrollbar (Firefox) */
+}
+
+.bottom-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .bottom-nav a {
@@ -258,12 +267,15 @@ tbody td {
   text-decoration: none;
   font-size: 0.9rem;
   text-align: center;
-  display: block;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .bottom-nav a:hover,
 .bottom-nav a.active {
   color: var(--primary);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 /* ================= FOOTER ================= */
